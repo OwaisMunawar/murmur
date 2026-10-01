@@ -1,0 +1,24 @@
+appId: com.owaismunawar.murmur
+name: Search notes, then delete one and undo
+---
+- launchApp
+- extendedWaitUntil:
+    visible: 'Launch week priorities'
+    timeout: 20000
+
+- tapOn:
+    id: notes-search
+- inputText: 'sintra'
+- assertVisible: 'Lisbon trip planning'
+- assertNotVisible: 'Launch week priorities'
+- eraseText
+- hideKeyboard
+
+- swipe:
+    from: 'Dentist moved to Friday'
+    direction: LEFT
+- assertVisible: 'Note deleted'
+- assertNotVisible: 'Dentist moved to Friday'
+- tapOn:
+    id: toast-action
+- assertVisible: 'Dentist moved to Friday'

@@ -1,0 +1,6 @@
+# Run against a demo-mode build (EXPO_PUBLIC_DEMO=1): seeded notes and
+# deterministic engines make every assertion below stable.
+flows:
+  - '*.yaml'
+excludeFiles:
+  - config.yaml

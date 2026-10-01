@@ -66,3 +66,17 @@ jest.mock('expo-router', () => {
     __router: router,
   };
 });
+
+jest.mock('@/features/recording/data/sampleClip', () => ({
+  loadSampleClip: jest.fn(async () => ({
+    sampleRate: 16_000,
+    samples: Float32Array.from({ length: 16_000 * 4 }, (_, i) => Math.sin(i / 9) * 0.3),
+  })),
+}));
+
+// Legend List virtualises from measured layout, which Jest never produces.
+// A FlatList stand-in renders every row so screens can be asserted on.
+jest.mock('@legendapp/list/react-native', () => {
+  const { FlatList } = require('react-native');
+  return { LegendList: FlatList };
+});

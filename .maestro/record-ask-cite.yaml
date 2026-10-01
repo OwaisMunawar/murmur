@@ -1,0 +1,40 @@
+appId: com.owaismunawar.murmur
+name: Record a note, then ask a question and open the cited note
+---
+- launchApp
+- extendedWaitUntil:
+    visible: 'Launch week priorities'
+    timeout: 20000
+
+# Record. The sample clip replays through the same capture path as the
+# microphone (real time, 14.5 s), then the full pipeline runs.
+- tapOn:
+    id: record-fab
+- tapOn:
+    id: use-sample-clip
+- assertVisible: 'Listening'
+- extendedWaitUntil:
+    visible: 'Book the train tickets this week'
+    timeout: 40000
+- assertVisible: 'Email Priya the updated budget before ten, and pick up the dry cleaning on the way home'
+- tapOn:
+    id: BackButton
+- assertVisible: 'Quick reminder for tomorrow'
+
+# Ask, then follow the source to the note.
+- openLink: murmur://ask
+- tapOn:
+    text: 'Open'
+    optional: true
+- tapOn:
+    id: ask-input
+- inputText: 'When is my dentist cleaning'
+- tapOn:
+    id: ask-send
+- extendedWaitUntil:
+    visible: 'Your cleaning moved from Wednesday to Friday at nine fifteen.*'
+    timeout: 15000
+- tapOn:
+    id: source-1
+- assertVisible: 'The clinic called to move the cleaning to Friday at 9:15.*'
+- assertVisible: 'Move Friday standup to 10:30'
