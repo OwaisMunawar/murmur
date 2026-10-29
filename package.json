@@ -21,7 +21,7 @@
     "e2e": "maestro test .maestro"
   },
   "dependencies": {
-    "@legendapp/list": "3.6.0",
+    "@legendapp/list": "3.7.0",
     "@op-engineering/op-sqlite": "18.2.5",
     "@shopify/react-native-skia": "2.13.1",
     "expo": "~57.0.29",
